@@ -389,8 +389,9 @@ static TWTRTwitter *sharedTwitter;
         [viewController presentViewController:navigationController animated:YES completion:nil];
     }
         completion:^(TWTRSession *session, NSError *error) {
-            [viewController dismissViewControllerAnimated:YES completion:nil];
-            completion(session, error);
+          [viewController dismissViewControllerAnimated:YES completion:^{
+              completion(session, error);
+          }];
         }];
 }
 
